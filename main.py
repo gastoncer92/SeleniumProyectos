@@ -27,15 +27,16 @@ def tabla_grupos(conn):
     print("Creando base de datos para las ventas")
     cursor = conn.cursor()
     cursor.executescript("""
-    CREATE TABLE IF NOT EXISTS [grupos] (
-[prupoId] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
-[NombreGrupo] VARCHAR(50)  NULL,
-[UrlGrupo] VARCHAR(50)  NULL,
-[TipoGrupo] VARCHAR(50)  NULL,
-[VolumenGrupo] VARCHAR(50)  NULL,
-[ActividadGrupo] VARCHAR(50)  NULL,
-[ActividadEstadistica] FLOAT  NULL
-);
+    CREATE TABLE IF NOT EXISTS 
+        [grupos] (
+            [prupoId] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,
+            [NombreGrupo] VARCHAR(50)  NULL,
+            [UrlGrupo] VARCHAR(50)  NULL,
+            [TipoGrupo] VARCHAR(50)  NULL,
+            [VolumenGrupo] VARCHAR(50)  NULL,
+            [ActividadGrupo] VARCHAR(50)  NULL,
+            [ActividadEstadistica] FLOAT  NULL
+    );
     """)
     conn.commit()
 
@@ -61,9 +62,11 @@ def guardar_elemento(indice):
 
 
 def guardar_elemento2(indice):
-    pathNombreGrupo = "//div[@role='article'][{}]/div/div/div/div/div/div/div[2]/div[1]/div/div/div[1]/span/div/a".format(indice)
+    pathNombreGrupo = "//div[@role='article'][{}]/div/div/div/div/div/div/div[2]/div[1]/div/div/div[1]/span/div/a".format(
+        indice)
     elem1 = driver.find_element(By.XPATH, pathNombreGrupo).text
-    pathDetalleGrupo = "//div[@role='article'][{}]/div/div/div/div/div/div/div[2]/div[1]/div/div/div[2]/span/span".format(indice)
+    pathDetalleGrupo = "//div[@role='article'][{}]/div/div/div/div/div/div/div[2]/div[1]/div/div/div[2]/span/span".format(
+        indice)
     elem2 = driver.find_element(By.XPATH, pathDetalleGrupo).text
     print("Guardado:\n{}\n{}".format(elem1, elem2))
     print('indice' + indice)
@@ -87,37 +90,84 @@ def webScraper(indice):
                 print("fin")
 
 
-if __name__ == '__main__':
+def buscar(usuario,password, filter, busqueda):
+    print('usuario: '+ usuario)
+    print('password: ' + password)
+    print('filter: ' + filter)
+    print('busqueda: ' + busqueda)
     xpathMas = '//*[@id="mount_0_0_gB"]/div/div[1]/div/div[2]/div[3]/div/div[1]/div[1]/ul/li[4]/span/div/a/span/svg'
     xpathGrupos = '//*[@id="mount_0_0_3W"]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[1]/div[1]/ul/li[' \
                   '3]/div/a/div[2] '
     driver = webdriver.Chrome()
     driver.get('http://www.facebook.com')  # futura variable
-    user = "gstncontacto@gmail.com"  # futura variable
-    pwd = "Hm(Mb4c$4c27"  # futura variable
-    botonGrupos = "//a[@role='link'][10]"
-    busqueda1 = 'Compra Venta'
-    busqueda2 = 'vfbawdawddawgnz'
-    busqueda3 = 'zxzxzzxzxzx'
-    busqueda4 = 'lllllllllllllllllllllllllllllllllllllllllllllll'
-    busqueda = busqueda4
+    # user = "gstncontacto@gmail.com"  # futura variable
+    # pwd = "Hm(Mb4c$4c27"  # futura variable
+    # botonGrupos = "//a[@role='link'][10]"
+    # busqueda1 = 'Compra Venta'
+    # busqueda2 = 'vfbawdawddawgnz'
+    # busqueda3 = 'zxzxzzxzxzx'
+    # busqueda4 = 'lllllllllllllllllllllllllllllllllllllllllllllll'
+    # busqueda = busqueda3
+
+    # entrar e ingresar datos
     elem = driver.find_element(By.ID, "email")
-    elem.send_keys(user)
+    elem.send_keys(usuario)
     driver.implicitly_wait(3)
     elem = driver.find_element(By.NAME, "pass")
-    elem.send_keys(pwd)
+    elem.send_keys(password)
     driver.find_element(By.XPATH, "//div/button").click()
+    # fin ingresar datos
     driver.implicitly_wait(2)
     driver.find_element(By.XPATH, "//a[@aria-label='Grupos']").click()
     driver.implicitly_wait(2)
     driver.find_element(By.XPATH, "//input[@aria-label='Buscar grupos']").send_keys(busqueda, Keys.ENTER)  #
+    #aca habilito el filtro de grupos
     driver.implicitly_wait(2)
     driver.find_element(By.XPATH, "//input[@aria-label='Buscar grupos']").send_keys(busqueda, Keys.ESCAPE)  #
-    driver.find_elements(By.XPATH, "//div[@role='listitem']/div/a[@role='link']")[1].click()
 
+    if filter == 'todo':
+        index = 0
+    elif filter == 'grupos':
+        index = 1
+    elif filter == 'publicaciones de grupos':
+        index = 2
+    print("index: " + str(index))
+    # interesante para ampliar a otros tipos de busqueda, como TODO y Publicaciones de grupos
+    driver.find_elements(By.XPATH, "//div[@role='listitem']/div/a[@role='link']")[index].click()
     indice = 1
-    # cantidad = len(driver.find_elements(By.XPATH, "//div[@role='article']"))
 
+
+if __name__ == '__main__':
+    # xpathMas = '//*[@id="mount_0_0_gB"]/div/div[1]/div/div[2]/div[3]/div/div[1]/div[1]/ul/li[4]/span/div/a/span/svg'
+    # xpathGrupos = '//*[@id="mount_0_0_3W"]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div/div[1]/div[1]/ul/li[' \
+    #               '3]/div/a/div[2] '
+    # driver = webdriver.Chrome()
+    # driver.get('http://www.facebook.com')  # futura variable
+    # user = "gstncontacto@gmail.com"  # futura variable
+    # pwd = "Hm(Mb4c$4c27"  # futura variable
+    # botonGrupos = "//a[@role='link'][10]"
+    # busqueda1 = 'Compra Venta'
+    # busqueda2 = 'vfbawdawddawgnz'
+    # busqueda3 = 'zxzxzzxzxzx'
+    # busqueda4 = 'lllllllllllllllllllllllllllllllllllllllllllllll'
+    # busqueda = busqueda3
+    #
+    # elem = driver.find_element(By.ID, "email")
+    # elem.send_keys(user)
+    # driver.implicitly_wait(3)
+    # elem = driver.find_element(By.NAME, "pass")
+    # elem.send_keys(pwd)
+    # driver.find_element(By.XPATH, "//div/button").click()
+    # driver.implicitly_wait(2)
+    # driver.find_element(By.XPATH, "//a[@aria-label='Grupos']").click()
+    # driver.implicitly_wait(2)
+    # driver.find_element(By.XPATH, "//input[@aria-label='Buscar grupos']").send_keys(busqueda, Keys.ENTER)  #
+    # driver.implicitly_wait(2)
+    # driver.find_element(By.XPATH, "//input[@aria-label='Buscar grupos']").send_keys(busqueda, Keys.ESCAPE)  #
+    # driver.find_elements(By.XPATH, "//div[@role='listitem']/div/a[@role='link']")[1].click()
+    buscar('gstncontacto@gmail.com', 'Hm(Mb4c$4c27','grupos','pepe')
+
+    # cantidad = len(driver.find_elements(By.XPATH, "//div[@role='article']"))
 
     while indice <= len(driver.find_elements(By.XPATH, "//div[@role='article']")):
         print('----------------------')
