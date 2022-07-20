@@ -95,5 +95,12 @@ if __name__ == '__main__':
 #                 a3bd9o3v b1v8xokw m9osqain oqcyycmt" dir="auto">
 # 	Fin de los resultados
 # </span>
+# Fin de los resultados
 #
+# https://python.hotexamples.com/es/examples/selenium.webdriver.support.wait/WebDriverWait/send_keys/python-webdriverwait-send_keys-method-examples.html
+
+
+# https://selenium-python.readthedocs.io/getting-started.html
+
+# https://selenium-python.readthedocs.io/waits.html
 # Fin de los resultados"""
