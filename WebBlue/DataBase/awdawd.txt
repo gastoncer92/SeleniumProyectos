@@ -1,0 +1,110 @@
+/****** Object:  Table [dbo].[Table_15]    Script Date: 12/07/2022 0:11:38 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Table_15](
+        [CensoId] [nvarchar](50) NOT NULL,
+        [Responsable ] [varchar](50) NULL,
+         [Fecha ] [date] NULL,
+         [Partido ] [varchar](50) NULL,
+         [Localidad ] [varchar](50) NULL,
+         [Cuadra ] [varchar](50) NULL,
+         [Manzana ] [varchar](50) NULL,
+         [NomApeDato1 ] [varchar](50) NULL,
+         [NomApeDato2 ] [varchar](50) NULL,
+         [NomApeDato3 ] [varchar](50) NULL,
+         [NomApeDato4 ] [varchar](50) NULL,
+         [NomApeDato5 ] [varchar](50) NULL,
+         [NomApeDato6 ] [varchar](50) NULL,
+         [EdadDato1 ] [varchar](50) NULL,
+         [EdadDato2 ] [varchar](50) NULL,
+         [EdadDato3 ] [varchar](50) NULL,
+         [EdadDato4 ] [varchar](50) NULL,
+         [EdadDato5 ] [varchar](50) NULL,
+         [EdadDato6 ] [varchar](50) NULL,
+         [NivelEscolaridad1 ] [varchar](50) NULL,
+         [NivelEscolaridad2 ] [varchar](50) NULL,
+         [NivelEscolaridad3 ] [varchar](50) NULL,
+         [NivelEscolaridad4 ] [varchar](50) NULL,
+         [NivelEscolaridad5 ] [varchar](50) NULL,
+         [NivelEscolaridad6 ] [varchar](50) NULL,
+
+         [TipoVivienda ] [varchar](50) NULL,
+         [TipoAgua ] [varchar](50) NULL,
+
+         [GasInstalado ] [varchar](50) NULL,
+         [ElectricidadInstalado ] [varchar](50) NULL,
+         [Excretas ] [varchar](50) NULL,
+
+         [Basura ] [varchar](50) NULL,
+
+         [CantidadAmbientes ] [varchar](50) NULL,
+         [HabitacionDiponibleCovid ] [varchar](50) NULL,
+         [BanioExclusivo ] [varchar](50) NULL,
+         [RedDeReferentes ] [varchar](50) NULL,
+         [TodosDocumentados ] [varchar](50) NULL,
+         [MotivoNoDocumento ] [varchar](50) NULL,
+         [SitTipoSubsidio ] [varchar](50) NULL,
+         [SitIngresoPrincipalSub ] [varchar](50) NULL,
+         [SitJubiladoOpensionado ] [varchar](50) NULL,
+         [SitIngresoPrincipalJub ] [varchar](50) NULL,
+         [SitObservaciones ] [varchar](50) NULL,
+         [UtiCentroSaludCercano ] [varchar](50) NULL,
+         [UtiCalVacunacionCompleto ] [varchar](50) NULL,
+         [UtiNoTieneVacuna ] [varchar](50) NULL,
+         [UtiFactorRiesgo ] [varchar](50) NULL,
+         [UtiNombre1 ] [varchar](50) NULL,
+         [UtiNombre2 ] [varchar](50) NULL,
+         [UtiNombre3 ] [varchar](50) NULL,
+         [UtiEdad1 ] [varchar](50) NULL,
+         [UtiEdad2 ] [varchar](50) NULL,
+         [UtiEdad3 ] [varchar](50) NULL,
+         [UtiPatologia1 ] [varchar](50) NULL,
+         [UtiPatologia2 ] [varchar](50) NULL,
+         [UtiPatologia3 ] [varchar](50) NULL,
+         [UtiEnTratamiento ] [varchar](50) NULL,
+         [UtiMedicacion ] [varchar](50) NULL,
+         [UtiComoSeProveeMedi ] [varchar](50) NULL,
+         [UtiConviveDiscap ] [varchar](50) NULL,
+         [UtiEnProgramaProvincial ] [varchar](50) NULL,
+         [UtiPersonaDiscapacidad1 ] [varchar](50) NULL,
+         [UtiPersonaDiscapacidad2 ] [varchar](50) NULL,
+         [UtiPersonaDiscapacidad3 ] [varchar](50) NULL,
+         [UtiPersonaDiscapacidad4 ] [varchar](50) NULL,
+         [UtiPersonaDiscapacidad5 ] [varchar](50) NULL,
+         [UtiCud ] [varchar](50) NULL,
+         [UtiConPensionUotra ] [varchar](50) NULL,
+         [UtiDentista ] [varchar](50) NULL,
+         [UtiDondeSeRealiza1 ] [varchar](50) NULL,
+         [UtiPsicologicoPsiquiatrico ] [varchar](50) NULL,
+         [UtiDondeSeRealiza2 ] [varchar](50) NULL,
+         [UtiMetodoAnticonceptivo ] [varchar](50) NULL,
+         [UtiComoSeProveeAnti ] [varchar](50) NULL,
+         [UtiEmbarazadas ] [varchar](50) NULL,
+         [UtiEdadEmbarazada ] [varchar](50) NULL,
+         [UtiSemanaEmbarazo ] [varchar](50) NULL,
+         [UtiRealizaControles ] [varchar](50) NULL,
+         [UtiDonde ] [varchar](50) NULL,
+         [UtiAdiccionAlcohol ] [varchar](50) NULL,
+         [UtiAdiccionDrogas ] [varchar](50) NULL,
+         [UtiAdiccionAlcoholQuienes ] [varchar](50) NULL,
+         [UtiAdiccionDrogasQuienes ] [varchar](50) NULL,
+         [UtiObservaciones ] [varchar](50) NULL,
+         [RecActividadDeportiva ] [varchar](50) NULL,
+         [RecComoDesarrollanDep ] [varchar](50) NULL,
+         [RecActividadCultural ] [varchar](50) NULL,
+         [RecComoDesarrollanCul ] [varchar](50) NULL,
+         [RecActividadInteres ] [varchar](50) NULL,
+         [ObservacionesEncuestador ] [varchar](50) NULL,
+ CONSTRAINT [PK_Table_15] PRIMARY KEY CLUSTERED
+(
+	[CensoId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+
