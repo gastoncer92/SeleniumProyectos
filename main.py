@@ -3,7 +3,7 @@ import database
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+from text import *
 from selenium import webdriver
 
 from selenium.webdriver.support.ui import WebDriverWait
@@ -15,12 +15,12 @@ from selenium.webdriver.common.keys import Keys
 
 def buscar(correo, password, filter, busqueda, cantidadDeRegistros):
     print('usuario: ' + correo)
-    print('password: ' + password)
+    print('password: ' + "********")
     print('filter: ' + filter)
     print('busqueda: ' + busqueda)
 
     driver = webdriver.Chrome()
-    driver.maximize_window()
+    # driver.maximize_window()
     driver.get('http://www.facebook.com')  # futura variable
 
     wait = WebDriverWait(driver, 30)
@@ -70,12 +70,53 @@ def buscar(correo, password, filter, busqueda, cantidadDeRegistros):
 
     for i in range(0, cantidadDeRegistros):
         # ListaDeArticulos = driver.find_elements(By.XPATH, "//div[@role='article']")
+        # Buscador: $x('//a[@role="presentation"]')
+        wait.until(EC.presence_of_element_located((By.XPATH, '//a[@role="presentation"]')))
+        ListaDeTitulos = driver.find_elements(By.XPATH, '//a[@role="presentation"]')
 
         wait.until(EC.presence_of_element_located((By.XPATH, "//div[@role='article']")))
         ListaDeArticulos = driver.find_elements(By.XPATH, "//div[@role='article']")
 
-        for i in ListaDeArticulos:
-            print('guardo el articulo')
+        # def good_list():
+        #     my_list = [value for value in range(elements)]
+        #
+        #
+        # def bad_list():
+        #     my_list = []
+        #     for value in range(elements):
+        #         my_list.append(value)
+        print('inicio codigo')
+        # lista = []
+        try:
+
+            for i in ListaDeTitulos:
+                print('====Titulos====')
+                print(i.text)
+                # print(i.get_property('innerText'))
+                # print(i.find_elements(By.XPATH, '//a[@role="presentation"]').get_property('innerText'))
+                # print(i.find_elements(By.XPATH, '//a[@role="presentation"]'))
+                # print(i.find_elements(By.XPATH, '//a[@role="presentation"]'))
+                # innerText: "Pepe🥺🐥🥺🐥\nGrupo público · 10 mil miembros · 20 publicaciones a la semana\nUnirte"
+
+                #buscando solo titulos $x('//div[@role="article"]//div[@class="qzhwtbm6 knvmm38d"][1]')
+                #buscando solo contenidos $x('//div[@role="article"]//div[@class="qzhwtbm6 knvmm38d"][1]')
+
+        except:
+            print_error()
+            driver.quit()
+        # lista=[]
+
+        # for i in range(len(ListaDeArticulos)):
+        #     lista.append(i)
+        # print(lista)
+        # print('fin codigo')
+        # for i in ListaDeArticulos:
+        #     lista.append(i.get_attribute(inner_text))
+
+        # codigos = [element.text for element in ListaDeArticulos]
+        # print(codigos)
+        # <selenium.webdriver.remote.webelement.WebElement (session="79a0abc6d9a8d97dbe74406937e69dbc", element="43e4f27b-d522-43d9-926c-1a62e47f84fc")>
+
         driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
 
         print('fin')
@@ -85,9 +126,7 @@ def buscar(correo, password, filter, busqueda, cantidadDeRegistros):
 
 if __name__ == '__main__':
     print('inicio')
-    buscar('gstncontacto@gmail.com', 'Hm(Mb4c$4c27', 'grupos', 'pepe', 2000)
-
-
+    buscar('gstncontacto@gmail.com', 'Hm(Mb4c$4c27', 'grupos', 'pepe', 1)
 
 # """
 # <span   class="d2edcug0 hpfvmrgz qv66sw1b c1et5uql lr9zc1uh a8c37x1j fe6kdd0r mau55g9w
@@ -98,9 +137,5 @@ if __name__ == '__main__':
 # Fin de los resultados
 #
 # https://python.hotexamples.com/es/examples/selenium.webdriver.support.wait/WebDriverWait/send_keys/python-webdriverwait-send_keys-method-examples.html
-
-
 # https://selenium-python.readthedocs.io/getting-started.html
-
 # https://selenium-python.readthedocs.io/waits.html
-# Fin de los resultados"""
